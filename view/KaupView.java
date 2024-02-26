@@ -11,8 +11,7 @@ import java.util.Scanner;
 
 public class KaupView {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(Scanner sc) {
         UtilService util = UtilServiceImpl.getInstance();
         MemberDTO person = new MemberBuilder()
                 .height(util.createRandomDouble(100,200))
@@ -29,7 +28,7 @@ public class KaupView {
                 "몸무게 : %.1f \n"+
                 "bmi : %.2s \n" +
                 "체질량 : %s\n" +
-                "------------",
+                "------------\n",
                 person.getHeight(),person.getWeight(),bmi,bodymass);
 
     }
