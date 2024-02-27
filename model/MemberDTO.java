@@ -13,28 +13,50 @@ public class MemberDTO {
     private double height;
     private double weight;
 
-    public String getId() {
+
+    public MemberDTO(String username, String password, String confirmPassword, String name, int personId, int phoneNumber, String address, String job, double height, double weight) {
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.name = name;
+        this.personId = personId;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.job = job;
+        this.height = height;
+        this.weight = weight;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public void setId(String id) {
-        this.username = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPw() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPw(String pw) {
-        this.password = pw;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPwAgain() {
+    public String getConfirmPassword() {
         return confirmPassword;
     }
 
-    public void setPwAgain(String pwAgain) {
-        this.confirmPassword = pwAgain;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getName() {
@@ -93,22 +115,9 @@ public class MemberDTO {
         this.weight = weight;
     }
 
-    public MemberDTO(String username, String password, String confirmPassword, String name, int personId, int phoneNumber, String address, String job, double height, double weight) {
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.name = name;
-        this.personId = personId;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.job = job;
-        this.height = height;
-        this.weight = weight;
-    }
-
     @Override
     public String toString() {
-        return "MemberDTO{" +
+        return username + " {" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
@@ -121,4 +130,5 @@ public class MemberDTO {
                 ", weight=" + weight +
                 '}';
     }
+
 }

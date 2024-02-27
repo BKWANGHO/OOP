@@ -1,3 +1,4 @@
+import serviceImpl.UserServiceImpl;
 import view.*;
 
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class Main {
                 case "3": BoardView.main(); break;
                 case "4": KaupView.main(sc);  break;
                 case "5": UserView.main(sc);  break;
+
             }
         }
     }

@@ -38,7 +38,10 @@ public class AuthServiceImpl implements AuthService {
                 .height(sc.nextInt())
                 .weight(sc.nextInt())
                 .build();
-        System.out.println(person.toString());
+
+        users.put(person.getUsername(),person);
+        System.out.println(users.get(sc.next()));
+
         return null;
     }
 

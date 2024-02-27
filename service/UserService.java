@@ -7,8 +7,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public interface UserService {
-    String join(Scanner sc);
-    String login(MemberDTO user);
+    String join(MemberDTO user);
+    String login(MemberDTO user,Scanner sc);
     MemberDTO findUserBYId(String username);
     void updatePassword(MemberDTO user);
     String deleteUser(String username);

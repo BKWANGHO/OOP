@@ -12,7 +12,7 @@ public class UserView {
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +
                     "1-회원가입\n" +
-                    " 2-로그인\n " +
+                    "2-로그인\n " +
                     "3-ID검색\n " +
                     "4-비번변경\n " +
                     "5-탈퇴\n " +
@@ -28,7 +28,7 @@ public class UserView {
                     ctrl.join(sc);
                     break;
                 case "2":
-
+                    ctrl.login(sc);
                     break;
                 case "3":
                     System.out.println(ctrl);

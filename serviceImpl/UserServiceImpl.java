@@ -1,6 +1,7 @@
 package serviceImpl;
 
 import builder.MemberBuilder;
+import controller.UserController;
 import model.MemberDTO;
 import service.AuthService;
 import service.UserService;
@@ -24,30 +25,47 @@ public class UserServiceImpl implements UserService {
     Map<String, MemberDTO> users;
 
     @Override
-    public String join(Scanner sc) {
-
-        System.out.println("ID,비밀번호,비밀번호확인,이름,주민번호,전화번호,주소,직업,키,몸무게를 입력해주세요");
-
-        MemberDTO person = new MemberBuilder()
-                .username(sc.next())
-                .password(sc.next())
-                .confirmPassword(sc.next())
-                .name(sc.next())
-                .personId(sc.nextInt())
-                .phoneNumber(sc.nextInt())
-                .address(sc.next())
-                .job(sc.next())
-                .height(sc.nextInt())
-                .weight(sc.nextInt())
-                .build();
-        System.out.println(person.toString());
-        return null;
+    public String join(MemberDTO user) {
+        users.put(user.getUsername(),user);
+        return "회원가입 성공, ID : " + users.get(user.getUsername());
     }
 
     @Override
-    public String login(MemberDTO user) {
-        return null;
+    public String login(MemberDTO user, Scanner sc) {
+        System.out.println("아이디를 입력해주세요");
+        user = users.get(sc.next());
+        String result ="";
+        if(user != null){
+            System.out.println("비밀번호를 입력해주세요");
+            if(sc.next().equals(user.getPassword())){
+                result = "로그인 성공";
+            }else {
+                result = "비밀번호가 틀렸습니다.";
+            }
+        }else {
+            result = "아이디가 틀렸습니다.";
+        }
+        return result;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public MemberDTO findUserBYId(String username) {
