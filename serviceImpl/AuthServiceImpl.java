@@ -23,29 +23,6 @@ public class AuthServiceImpl implements AuthService {
     Map<String, MemberDTO> users;
 
     @Override
-    public String login() {
-        return null;
-    }
-    @Override
-    public void findUser(String userName) {
-    }
-    @Override
-    public void addUsers() {
-        Map<String, MemberDTO> map = new HashMap<>();
-        UtilService util = UtilServiceImpl.getInstance();
-        String username = util.createRandomName();
-
-        for (int i = 0; i < 5; i++) {
-            map.put(username,
-                    new MemberBuilder()
-                            .username(username)
-                            .password("123")
-                            .confirmPassword("123")
-                            .name(util.createRandomName())
-                            .build());
-        }
-    }
-    @Override
     public String join(Scanner sc) {
         System.out.println("ID,비밀번호,비밀번호확인,이름,주민번호,전화번호,주소,직업을 입력해주세요");
 
@@ -61,14 +38,65 @@ public class AuthServiceImpl implements AuthService {
                 .height(sc.nextInt())
                 .weight(sc.nextInt())
                 .build();
-
-
         System.out.println(person.toString());
         return null;
     }
 
     @Override
-    public Map<String, MemberDTO> getUserMap() {
+    public String login() {
         return null;
     }
+
+    @Override
+    public MemberDTO findUser(String userName) {
+        MemberDTO user = new MemberBuilder().build();
+        return user;
+    }
+
+    @Override
+    public String addUsers() {
+        Map<String, MemberDTO> map = new HashMap<>();
+        UtilService util = UtilServiceImpl.getInstance();
+        for (int i = 0; i < 5; i++) {
+        String username = util.createRandomName();
+            map.put(username,
+                    new MemberBuilder()
+                            .username(username)
+                            .password("123")
+                            .confirmPassword("123")
+                            .name(util.createRandomName())
+                            .build());
+        }
+        users = map;
+        return  "더미값 추가";
+    }
+
+    @Override
+    public Map<String, MemberDTO> getUserMap() {
+        users.forEach((k,v)->
+                System.out.println("{"+k+","+v+"},"));
+        return users;
+    }
+
+    @Override
+    public String count() {
+        return users.size()+"";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

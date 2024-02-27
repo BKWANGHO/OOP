@@ -1,9 +1,13 @@
 package controller;
 
+import builder.MemberBuilder;
 import model.MemberDTO;
 import service.AuthService;
+import service.UtilService;
 import serviceImpl.AuthServiceImpl;
+import serviceImpl.UtilServiceImpl;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,18 +17,29 @@ public class AuthController {
     public AuthController() {
         this.auth = AuthServiceImpl.getInstance();
     }
-
-    public String join() {
-        return auth.join();
+    public String join(Scanner sc) {
+        return auth.join(sc);
     }
+
     public String login() {
         return auth.login();
     }
-
-    public void findUser(String username) {
-    auth.findUser(username);
-
-    public Map<String, MemberDTO> getaddUsers() {
-    return auth.get();}
+    public MemberDTO findUser(String username) {
+        return auth.findUser(username);
     }
+    public String addUsers() {
+        return auth.addUsers();
+    }
+    public Map<String, MemberDTO> getUserMap() {
+        return auth.getUserMap();
+    }
+
+    public String count() {
+        return auth.count();
+    }
+
+
+
+
+
 }

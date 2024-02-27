@@ -2,30 +2,54 @@ package controller;
 
 import model.MemberDTO;
 import service.AuthService;
+import service.UserService;
 import serviceImpl.AuthServiceImpl;
+import serviceImpl.UserServiceImpl;
 
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class UserController {
+public class UserController  {
 
-    private Map<String, MemberDTO> users;
+    UserService user;
 
     public UserController() {
-        this.users = new HashMap<>();
+        this.user = UserServiceImpl.getInstance();
     }
 
-    public void addUsers() {
-//        AuthService auth = AuthServiceImpl.getInstance();
-//        this.users = auth.addUsers();
+    public String join(Scanner sc) {
+        return user.join(sc);
+    }
+    public String login(MemberDTO user) {
+        return null;
     }
 
-    public void findUser(String username) {
-        System.out.println(users.get(username));
+    public MemberDTO findUserBYId(String username) {
+        return null;
     }
 
-    public void getUserList() {
+    public void updatePassword(MemberDTO user) {
 
+    }
+
+    public String deleteUser(String username) {
+        return null;
+    }
+
+    public List<MemberDTO> getUserList() {
+        return null;
+    }
+
+    public List<MemberDTO> findUserByName(String name) {
+        return null;
+    }
+
+    public List<MemberDTO> findUserByJob(String job) {
+        return null;
+    }
+
+    public int countUser() {
+        return 0;
     }
 }

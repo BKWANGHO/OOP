@@ -11,13 +11,13 @@ public interface AuthService {
 
     String login();
 
-    void addUsers();
+    String addUsers();
 
-    void findUser(String username);
+    MemberDTO findUser(String username);
 
     Map<String, MemberDTO> getUserMap();
 
-
+    String count();
 
 
 }

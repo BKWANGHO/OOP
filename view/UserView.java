@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class UserView {
     public static void main(Scanner sc) {
-
         UserController ctrl =new UserController();
-        ctrl.addUsers();
+
 
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +
@@ -26,7 +25,7 @@ public class UserView {
                     System.out.println("종료");
                     return;
                 case "1":
-
+                    ctrl.join(sc);
                     break;
                 case "2":
 
