@@ -26,5 +26,9 @@ public class ProductView {
         product.forEach(i->{
             System.out.println(i.toString());
         });
+
+
+
+
     }
 }

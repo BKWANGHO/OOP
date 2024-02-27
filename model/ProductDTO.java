@@ -3,6 +3,7 @@ package model;
 import java.util.function.Predicate;
 
 public class ProductDTO {
+    private int id;
     private int pno; //1씩 증가
     private String name;
     private String company;
