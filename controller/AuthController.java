@@ -18,15 +18,30 @@ public class AuthController {
         this.auth = AuthServiceImpl.getInstance();
     }
     public String join(Scanner sc) {
-        return auth.join(sc);
+
+        return auth.join(new MemberBuilder()
+                .username(sc.next())
+                .password(sc.next())
+                .confirmPassword(sc.next())
+                .name(sc.next())
+                .personId(sc.nextInt())
+                .phoneNumber(sc.nextInt())
+                .address(sc.next())
+                .job(sc.next())
+                .height(sc.nextInt())
+                .weight(sc.nextInt())
+                .build());
     }
 
-    public String login() {
+    public String login(Scanner sc) {
         return auth.login();
     }
+
     public MemberDTO findUser(String username) {
+
         return auth.findUser(username);
     }
+
     public String addUsers() {
         return auth.addUsers();
     }

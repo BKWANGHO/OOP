@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public interface AuthService {
 
-    String join(Scanner sc);
+    String join(MemberDTO user);
 
     String login();
 

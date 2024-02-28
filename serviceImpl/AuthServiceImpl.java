@@ -23,26 +23,10 @@ public class AuthServiceImpl implements AuthService {
     Map<String, MemberDTO> users;
 
     @Override
-    public String join(Scanner sc) {
-        System.out.println("ID,비밀번호,비밀번호확인,이름,주민번호,전화번호,주소,직업을 입력해주세요");
+    public String join(MemberDTO user) {
 
-        MemberDTO person = new MemberBuilder()
-                .username(sc.next())
-                .password(sc.next())
-                .confirmPassword(sc.next())
-                .name(sc.next())
-                .personId(sc.nextInt())
-                .phoneNumber(sc.nextInt())
-                .address(sc.next())
-                .job(sc.next())
-                .height(sc.nextInt())
-                .weight(sc.nextInt())
-                .build();
-
-        users.put(person.getUsername(),person);
-        System.out.println(users.get(sc.next()));
-
-        return null;
+        users.put(user.getUsername(),user);
+        return "회원가입 성공! username : " +user.getUsername();
     }
 
     @Override

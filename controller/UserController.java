@@ -7,7 +7,7 @@ import serviceImpl.UserServiceImpl;
 
 import java.util.*;
 
-public class UserController  {
+public class UserController {
     UserService user;
     MemberDTO member;
 
@@ -15,10 +15,8 @@ public class UserController  {
         this.user = UserServiceImpl.getInstance();
     }
 
-    public void join(Scanner sc) {
-        System.out.println("ID,비밀번호,비밀번호확인,이름,주민번호,전화번호,주소,직업,키,몸무게를 입력해주세요");
-
-        MemberDTO person = new MemberBuilder()
+    public MemberDTO join(Scanner sc) {
+        return user.join(new MemberBuilder()
                 .username(sc.next())
                 .password(sc.next())
                 .confirmPassword(sc.next())
@@ -29,39 +27,47 @@ public class UserController  {
                 .job(sc.next())
                 .height(sc.nextInt())
                 .weight(sc.nextInt())
-                .build();
-        System.out.println(user.join(person));
-    }
-    public void login(Scanner sc) {
-
-        System.out.println(user.login(member,sc));
+                .build());
     }
 
+    public String login(Scanner sc) {
+        return user.login(member, sc);
+    }
 
-    public MemberDTO findUserBYId(String username) {
+    public MemberDTO findUserBYId(Scanner sc) {
+
+        return user.findUserBYId(sc);
+    }
+
+    public Map<String, MemberDTO> addUsers() {
+        return user.addUsers();
+    }
+
+    public MemberDTO updatePassword(Scanner sc) {
+        return user.updatePassword(member, sc);
+    }
+
+
+    public String deleteUser(Scanner sc) {
+        return user.deleteUser(sc);
+    }
+
+    public Map<String, MemberDTO> getUserList() {
+
+        return user.getUserList();
+    }
+
+    public List<MemberDTO> findUserByName(Scanner sc) {
+
+
         return null;
     }
 
-    public void updatePassword(MemberDTO user) {
-
-    }
-    public String deleteUser(String username) {
-        return null;
+    public List<MemberDTO> findUserByJob(Scanner sc) {
+        return user.findUserByJob(sc);
     }
 
-    public List<MemberDTO> getUserList() {
-        return null;
-    }
-
-    public List<MemberDTO> findUserByName(String name) {
-        return null;
-    }
-
-    public List<MemberDTO> findUserByJob(String job) {
-        return null;
-    }
-
-    public int countUser() {
-        return 0;
+    public String countUser() {
+        return user.countUser();
     }
 }

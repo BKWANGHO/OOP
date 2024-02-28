@@ -3,15 +3,15 @@ package serviceImpl;
 import model.SubjectDTO;
 import service.GradeService;
 
-public class GradeServiceImpl implements GradeService {
+    public class GradeServiceImpl implements GradeService {
 
-    private static GradeService instance = new GradeServiceImpl();
+        private static GradeService instance = new GradeServiceImpl();
 
-    private GradeServiceImpl(){}
+        private GradeServiceImpl(){}
 
-    public static GradeService getInstance (){
-        return instance;
-    }
+        public static GradeService getInstance (){
+            return instance;
+        }
 
 
     @Override
