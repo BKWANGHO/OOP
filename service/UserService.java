@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 public interface UserService {
     MemberDTO join(MemberDTO user);
-    String login(MemberDTO user,Scanner sc);
+    String login(MemberDTO user);
     Map<String, MemberDTO> addUsers();
-    MemberDTO findUserBYId(Scanner sc);
-    MemberDTO updatePassword(MemberDTO user,Scanner sc);
-    String deleteUser(Scanner sc);
+    String findUserBYId(MemberDTO user);
+    String updatePassword(MemberDTO user);
+    String deleteUser(MemberDTO user);
     Map<String, MemberDTO> getUserList();
-    List<MemberDTO> findUserByName(MemberDTO user,Scanner sc);
-    List<MemberDTO> findUserByJob(Scanner sc);
+    List<MemberDTO> findUserByName(MemberDTO user);
+    List<MemberDTO> findUserByJob(MemberDTO user);
     String countUser();
 
 

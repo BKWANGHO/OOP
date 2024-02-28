@@ -29,11 +29,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(MemberDTO user, Scanner sc) {
-        user = users.get(sc.next());
+    public String login(MemberDTO user) {
+        MemberDTO userInMap = users.get(user.getUsername());
         String result = "";
-        if (user != null) {
-            if (sc.next().equals(user.getPassword())) {
+        if (userInMap != null) {
+            if (userInMap.getPassword().equals(user.getPassword())) {
                 result = "로그인 성공!";
             } else {
                 result = "비밀번호가 틀렸습니다.";
@@ -55,43 +55,45 @@ public class UserServiceImpl implements UserService {
                             .password("123")
                             .confirmPassword("123")
                             .name(util.createRandomName())
+                            .job("backsu")
                             .build());
         }
         return users;
     }
 
     @Override
-    public MemberDTO findUserBYId(Scanner sc) {
-        String username = sc.next();
-        MemberDTO user = users.get(username);
-        if (user != null) {
-            user = users.get(username);
+    public String findUserBYId(MemberDTO user) {
+        MemberDTO userInMap = users.get(user.getUsername());
+        String result ="";
+        if (userInMap != null) {
+            userInMap = users.get(user.getUsername());
+            result = "사용중인 아이디입니다.";
         } else {
-            System.out.println("없는 아이디입니다.");
+            result = "없는 아이디입니다.";
         }
-        return user;
+        return result;
     }
 
     @Override
-    public MemberDTO updatePassword(MemberDTO user, Scanner sc) {
-        user = users.get(sc.next());
-        if (user != null) {
-            System.out.println("변경할 비밀번호 입력하세요");
-            user.setPassword(sc.next());
-            System.out.println("한번더 입력하세요");
-            user.setConfirmPassword(sc.next());
-        } else {
-            System.out.println("없는 아이디입니다. ");
-        }
-        return user;
-    }
-
-    @Override
-    public String deleteUser(Scanner sc) {
-        MemberDTO user = users.get(sc.next());
+    public String updatePassword(MemberDTO user) {
+        MemberDTO userInMap = users.get(user.getUsername());
         String result = "";
-        if (user != null) {
-            users.remove(user.getUsername());
+        if (userInMap != null) {
+            userInMap.setPassword(user.getPassword());
+            userInMap.setConfirmPassword(user.getPassword());
+            result = "비밀번호 변경 성공!";
+        } else {
+            result = "없는 아이디입니다.";
+        }
+        return result;
+    }
+
+    @Override
+    public String deleteUser(MemberDTO user) {
+        MemberDTO userInMap = users.get(user.getUsername());
+        String result = "";
+        if (userInMap != null) {
+            users.remove(userInMap.getUsername());
             result = "삭제완료";
         } else {
             result = "없는 아이디입니다.";
@@ -107,25 +109,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MemberDTO> findUserByName(MemberDTO user,Scanner sc) {
-
-        List<MemberDTO> valueList = new ArrayList<>();
-
-
-
-
-
-
-        return null;
+    public List<MemberDTO> findUserByName(MemberDTO user) {
+        List<MemberDTO> list = new ArrayList<>();
+        for(String key : users.keySet()){
+            MemberDTO nameMap = users.get(key);
+            if(nameMap.getName().equals(user.getName())){
+                list.add(nameMap);
+            }
+        }
+        return list;
     }
 
     @Override
-    public List<MemberDTO> findUserByJob(Scanner sc) {
+    public List<MemberDTO> findUserByJob(MemberDTO user) {
         List<MemberDTO> list = new ArrayList<>();
         for(String key : users.keySet()){
-            MemberDTO user = users.get(key);
-            if(user.getJob().equals(sc.next())){
-                list.add(user);
+            MemberDTO userInMap = users.get(key);
+            if(userInMap.getJob().equals(user.getJob())){
+                list.add(userInMap);
             }
         }
         return list;
@@ -133,6 +134,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String countUser() {
-        return users.size() + "";
+        return "회원수는 : "+users.size() ;
     }
 }

@@ -128,7 +128,8 @@ public class MemberDTO {
                 ", job='" + job + '\'' +
                 ", height=" + height +
                 ", weight=" + weight +
-                '}';
+                '}' + '\n';
+
     }
 
 }

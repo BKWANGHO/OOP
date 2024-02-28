@@ -1,6 +1,7 @@
 package view;
 
 import controller.UserController;
+import serviceImpl.AuthServiceImpl;
 
 import java.util.Scanner;
 
@@ -45,6 +46,8 @@ public class UserView {
                     break;
                 case "4":
                     System.out.println("아이디를 입력하세요");
+                    System.out.println("변경할 비밀번호 입력하세요");
+                    System.out.println("한번더 입력하세요");
                     System.out.println(ctrl.updatePassword(sc));
                     break;
                 case "5":
@@ -56,7 +59,9 @@ public class UserView {
                     ctrl.getUserList();
                     break;
                 case "7":
-
+                    System.out.println("=== 이름으로검색 ===");
+                    System.out.println("이름을 입력하세요");
+                    System.out.println(ctrl.findUserByName(sc));
                     break;
                 case "8":
                     System.out.println("=== 직업검색 ===");
@@ -66,7 +71,7 @@ public class UserView {
                     break;
                 case "9":
                     System.out.println("=== 회원수 ===");
-                    System.out.println("총 회원 수 : " + ctrl.countUser() + "명");
+                    System.out.println(ctrl.countUser());
                     break;
             }
         }

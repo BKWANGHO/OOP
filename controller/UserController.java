@@ -31,25 +31,41 @@ public class UserController {
     }
 
     public String login(Scanner sc) {
-        return user.login(member, sc);
+        return user.login(new MemberBuilder()
+                .username(sc.next())
+                .password(sc.next())
+                        .build()
+                );
     }
 
-    public MemberDTO findUserBYId(Scanner sc) {
-
-        return user.findUserBYId(sc);
+    public String findUserBYId(Scanner sc) {
+        return user.findUserBYId(new MemberBuilder()
+                .username(sc.next())
+                .build()
+        );
     }
 
     public Map<String, MemberDTO> addUsers() {
         return user.addUsers();
     }
 
-    public MemberDTO updatePassword(Scanner sc) {
-        return user.updatePassword(member, sc);
+    public String updatePassword(Scanner sc) {
+
+        return user.updatePassword(new MemberBuilder()
+                .username(sc.next())
+                .password(sc.next())
+                .confirmPassword(sc.next())
+                .build()
+        );
     }
 
 
     public String deleteUser(Scanner sc) {
-        return user.deleteUser(sc);
+
+        return user.deleteUser(new MemberBuilder()
+                .username(sc.next())
+                .build()
+        );
     }
 
     public Map<String, MemberDTO> getUserList() {
@@ -58,13 +74,15 @@ public class UserController {
     }
 
     public List<MemberDTO> findUserByName(Scanner sc) {
-
-
-        return null;
+        return user.findUserByName(new MemberBuilder()
+                .name(sc.next())
+                .build());
     }
 
     public List<MemberDTO> findUserByJob(Scanner sc) {
-        return user.findUserByJob(sc);
+        return user.findUserByJob(new MemberBuilder()
+                .job(sc.next())
+                .build());
     }
 
     public String countUser() {
