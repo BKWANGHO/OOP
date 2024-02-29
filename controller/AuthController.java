@@ -15,6 +15,7 @@ public class AuthController {
     AuthService auth;
 
     public AuthController() {
+
         this.auth = AuthServiceImpl.getInstance();
     }
     public String join(Scanner sc) {

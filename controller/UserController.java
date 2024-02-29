@@ -9,7 +9,6 @@ import java.util.*;
 
 public class UserController {
     UserService user;
-    MemberDTO member;
 
     public UserController() {
         this.user = UserServiceImpl.getInstance();

@@ -55,7 +55,8 @@ public class MemberBuilder {
         return this;
     }
     public MemberDTO build(){
-        return new MemberDTO(username,password,confirmPassword,name,personId,phoneNumber,address,job,height,weight);
+        return new MemberDTO(username,password,confirmPassword,name,personId
+                ,phoneNumber,address,job,height,weight);
     }
 
 
