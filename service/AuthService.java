@@ -2,6 +2,7 @@ package service;
 
 import model.Member;
 
+import java.util.List;
 import java.util.Map;
 
 public interface AuthService {
@@ -16,6 +17,9 @@ public interface AuthService {
 
     Map<String, Member> getUserMap();
 
+    List<?> getUserList();
+    List<?> findUsersByName(String name);
+    List<?> findUsersByJob(String job);
     String count();
 
 

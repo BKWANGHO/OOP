@@ -66,6 +66,21 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public List<?> getUserList() {
+        return null;
+    }
+
+    @Override
+    public List<?> findUsersByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<?> findUsersByJob(String job) {
+        return null;
+    }
+
+    @Override
     public String count() {
         return users.size()+"";
     }

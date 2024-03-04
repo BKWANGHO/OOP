@@ -3,15 +3,12 @@ package util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Inventory<T> {
     private ArrayList<T> inventory;
-    public Inventory(ArrayList<T> inventory) {
+    public Inventory() {
         this.inventory = new ArrayList<>();
     }
     public void add(T t) {
@@ -29,6 +26,9 @@ public class Inventory<T> {
     public void clear() {
         inventory.clear();
     }
+
+
+
 
 }
 
