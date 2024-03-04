@@ -1,7 +1,6 @@
 package view;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.KaupService;
 import service.UtilService;
 import serviceImpl.KaupServiceImpl;
@@ -13,7 +12,7 @@ public class KaupView {
 
     public static void main(Scanner sc) {
         UtilService util = UtilServiceImpl.getInstance();
-        MemberDTO person = new MemberBuilder()
+        Member person = Member.builder()
                 .height(util.createRandomDouble(100,200))
                 .weight(util.createRandomDouble(50,100))
                 .build();

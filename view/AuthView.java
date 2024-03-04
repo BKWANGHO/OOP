@@ -1,8 +1,6 @@
 package view;
 
-import builder.MemberBuilder;
 import controller.AuthController;
-import model.MemberDTO;
 
 import java.util.Scanner;
 

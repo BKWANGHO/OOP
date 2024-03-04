@@ -1,7 +1,6 @@
 package view;
 
-import builder.ProductBuilder;
-import model.ProductDTO;
+import model.Product;
 import service.UtilService;
 import serviceImpl.UtilServiceImpl;
 
@@ -11,11 +10,11 @@ import java.util.List;
 public class ProductView {
     public static void main(String[] args) {
 
-        List<ProductDTO> product = new ArrayList<>();
+        List<Product> product = new ArrayList<>();
         UtilService util = UtilServiceImpl.getInstance();
 
         for(int i=0;i<5;i++){
-            product.add(new ProductBuilder()
+            product.add(Product.builder()
                     .pno(i)
                     .name(util.createRandomName())
                     .company(util.createRandomCompany())

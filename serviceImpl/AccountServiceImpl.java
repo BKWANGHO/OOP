@@ -1,7 +1,6 @@
 package serviceImpl;
 
-import builder.AccountBuilder;
-import model.AccountDTO;
+import model.Account;
 import service.AccountService;
 
 import java.time.LocalDateTime;
@@ -9,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
+    List<Account> accountList;
+    List<Account> bankingHistory;
+    String result = "";
 
     private static AccountService instance = new AccountServiceImpl();
 
@@ -17,82 +19,47 @@ public class AccountServiceImpl implements AccountService {
         this.bankingHistory = new ArrayList<>();
 
     }
-
     public static AccountService getInstance() {
         return instance;
     }
 
-    List<AccountDTO> accountList;
-    List<AccountDTO> bankingHistory;
-    String result = "";
-
     @Override
-    public String createAccount(AccountDTO account) {
+    public String createAccount(Account account) {
         accountList.add(account);
         result = "계좌 개설에 성공했습니다. 예금주 : " + account.getAccountHolder();
         return result;
     }
 
     @Override
-    public String deposit(AccountDTO account) {
-        for(AccountDTO accountDTO : accountList){
-            if (accountDTO.getAccountNumber().equals(account.getAccountNumber())){
-                accountDTO.setBalance(accountDTO.getBalance() + account.getBalance());
+    public String deposit(Account account) {
+        for(Account Account : accountList){
+            if (Account.getAccountNumber().equals(account.getAccountNumber())){
+                Account.setBalance(Account.getBalance() + account.getBalance());
                 result = "입금 성공! "+ account.getBalance() + "원 입금";
-                bankingHistory.add(new AccountBuilder()
+                bankingHistory.add(Account.builder()
                         .accountNumber(account.getAccountNumber())
                         .balance(account.getBalance())
                         .transactionDate(LocalDateTime.now())
-                        .transaction("입금 금액 : ")
+                        .transation("입금 금액 : ")
                         .build());
             }else {
                 result = "없는 계좌입니다.";
             }
         }
-//        for (int i = 0; i < accountList.size(); i++) {
-//            AccountDTO listAccount = accountList.get(i);
-//            if (listAccount.getAccountNumber().equals(account.getAccountNumber())) {
-//                listAccount.setBalance(listAccount.getBalance() + account.getBalance());
-//                result = "입금 성공! "+account.getBalance()+"원 입금";
-//                bankingHistory.add(new AccountBuilder()
-//                        .accountNumber(account.getAccountNumber())
-//                        .balance(account.getBalance())
-//                        .transactionDate(LocalDateTime.now())
-//                                .transaction("입금 금액 : ")
-//                        .build());
-//            } else {
-//                result = "없는계좌입니다.";
-//            }
-//        }
         return result;
     }
 
     @Override
-    public String withdraw(AccountDTO account) {
-//        for (int i = 0; i < accountList.size(); i++) {
-//            AccountDTO listAccount = accountList.get(i);
-//            if (listAccount.getAccountNumber().equals(account.getAccountNumber())) {
-//                listAccount.setBalance(listAccount.getBalance() - account.getBalance());
-//                result = "출금 성공! "+ account.getBalance() + "원 출금";
-//                bankingHistory.add(new AccountBuilder()
-//                        .accountNumber(account.getAccountNumber())
-//                        .balance(account.getBalance())
-//                        .transactionDate(LocalDateTime.now())
-//                        .transaction("출금 금액 : ")
-//                        .build());
-//            } else {
-//                result = "없는계좌입니다.";
-//            }
-//        }
-        for(AccountDTO accountDTO : accountList){
-            if (accountDTO.getAccountNumber().equals(account.getAccountNumber())){
-                accountDTO.setBalance(accountDTO.getBalance() - account.getBalance());
+    public String withdraw(Account account) {
+        for(Account Account : accountList){
+            if (Account.getAccountNumber().equals(account.getAccountNumber())){
+                Account.setBalance(Account.getBalance() - account.getBalance());
                 result = "출금 성공! "+ account.getBalance() + "원 출금";
-                bankingHistory.add(new AccountBuilder()
+                bankingHistory.add(model.Account.builder()
                         .accountNumber(account.getAccountNumber())
                         .balance(account.getBalance())
                         .transactionDate(LocalDateTime.now())
-                        .transaction("출금 금액 : ")
+                        .transation("출금 금액 : ")
                         .build());
             }else {
                 result = "없는 계좌입니다.";
@@ -105,25 +72,18 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public String getBalance(String accountNumber) {
         String balance = "";
-        for (AccountDTO accountDTO : bankingHistory)   {
-            if (accountDTO.getAccountNumber().equals(accountNumber)) {
-                balance += accountDTO.getTransation() + (accountDTO.getBalance()+"\n");
+        for (Account Account : bankingHistory)   {
+            if (Account.getAccountNumber().equals(accountNumber)) {
+                balance += Account.getTransation() + (Account.getBalance()+"\n");
+            }else {
+                balance = "없는 계좌입니다.";
             }
         }
-//        for (int i = 0; i < bankingHistory.size(); i++) {
-//            AccountDTO listAccount = accountList.get(i);
-//            if (listAccount.getAccountNumber().equals(accountNumber)) {
-//                String price = bankingHistory.get(i).getBalance()+"";
-//                String transcation = bankingHistory.get(i).getTransation();
-//                result += transcation + price+"\n";
-//            }
-//        }
-//        System.out.println(bankingHistory);
         return balance;
     }
 
     @Override
-    public List<AccountDTO> accountList() {
+    public List<Account> accountList() {
         return accountList;
     }
 

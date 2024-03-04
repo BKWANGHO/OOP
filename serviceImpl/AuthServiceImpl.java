@@ -1,13 +1,10 @@
 package serviceImpl;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.AuthService;
 import service.UtilService;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class AuthServiceImpl implements AuthService {
 
@@ -15,15 +12,17 @@ public class AuthServiceImpl implements AuthService {
 
     private AuthServiceImpl() {
         this.users = new HashMap<>();
+        this.userList = new ArrayList<>();
     }
     public static AuthService getInstance() {
         return instance;
     }
 
-    Map<String, MemberDTO> users;
+    Map<String, Member> users;
+    List<Member> userList;
 
     @Override
-    public String join(MemberDTO user) {
+    public String join(Member user) {
 
         users.put(user.getUsername(),user);
         return "회원가입 성공! username : " +user.getUsername();
@@ -35,19 +34,20 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public MemberDTO findUser(String userName) {
-        MemberDTO user = new MemberBuilder().build();
-        return user;
+    public Member findUser(String userName) {
+//        Member user = Member.builder()
+
+        return null;
     }
 
     @Override
     public String addUsers() {
-        Map<String, MemberDTO> map = new HashMap<>();
+        Map<String, Member> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
         for (int i = 0; i < 5; i++) {
         String username = util.createRandomName();
             map.put(username,
-                    new MemberBuilder()
+                    Member.builder()
                             .username(username)
                             .password("123")
                             .confirmPassword("123")
@@ -59,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Map<String, MemberDTO> getUserMap() {
+    public Map<String, Member> getUserMap() {
         users.forEach((k,v)->
                 System.out.println("{"+k+","+v+"},"));
         return users;

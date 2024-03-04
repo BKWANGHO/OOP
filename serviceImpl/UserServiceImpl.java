@@ -1,7 +1,6 @@
 package serviceImpl;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.UserService;
 import service.UtilService;
 
@@ -9,7 +8,7 @@ import java.util.*;
 
 public class UserServiceImpl implements UserService {
 
-    Map<String, MemberDTO> users;
+    Map<String, Member> users;
     private static UserService instance = new UserServiceImpl();
 
     private UserServiceImpl() {
@@ -23,14 +22,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public MemberDTO join(MemberDTO user) {
+    public Member join(Member user) {
         users.put(user.getUsername(), user);
         return users.get(user.getUsername());
     }
 
     @Override
-    public String login(MemberDTO user) {
-        MemberDTO userInMap = users.get(user.getUsername());
+    public String login(Member user) {
+        Member userInMap = users.get(user.getUsername());
         String result = "";
         if (userInMap != null) {
             if (userInMap.getPassword().equals(user.getPassword())) {
@@ -45,12 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, MemberDTO> addUsers() {
+    public Map<String, Member> addUsers() {
         UtilService util = UtilServiceImpl.getInstance();
         for (int i = 0; i < 5; i++) {
             String username = util.createRandomUsername();
             users.put(username,
-                    new MemberBuilder()
+                    Member.builder()
                             .username(username)
                             .password("123")
                             .confirmPassword("123")
@@ -62,8 +61,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String findUserBYId(MemberDTO user) {
-        MemberDTO userInMap = users.get(user.getUsername());
+    public String findUserBYId(Member user) {
+        Member userInMap = users.get(user.getUsername());
         String result ="";
         if (userInMap != null) {
             userInMap = users.get(user.getUsername());
@@ -75,8 +74,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(MemberDTO user) {
-        MemberDTO userInMap = users.get(user.getUsername());
+    public String updatePassword(Member user) {
+        Member userInMap = users.get(user.getUsername());
         String result = "";
         if (userInMap != null) {
             userInMap.setPassword(user.getPassword());
@@ -89,8 +88,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String deleteUser(MemberDTO user) {
-        MemberDTO userInMap = users.get(user.getUsername());
+    public String deleteUser(Member user) {
+        Member userInMap = users.get(user.getUsername());
         String result = "";
         if (userInMap != null) {
             users.remove(userInMap.getUsername());
@@ -102,17 +101,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, MemberDTO> getUserList() {
+    public Map<String, Member> getUserList() {
         users.forEach((k, v) ->
                 System.out.println("{" + k + "," + v + "},"));
         return users;
     }
 
     @Override
-    public List<MemberDTO> findUserByName(MemberDTO user) {
-        List<MemberDTO> list = new ArrayList<>();
+    public List<Member> findUserByName(Member user) {
+        List<Member> list = new ArrayList<>();
         for(String key : users.keySet()){
-            MemberDTO nameMap = users.get(key);
+            Member nameMap = users.get(key);
             if(nameMap.getName().equals(user.getName())){
                 list.add(nameMap);
             }
@@ -121,10 +120,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MemberDTO> findUserByJob(MemberDTO user) {
-        List<MemberDTO> list = new ArrayList<>();
+    public List<Member> findUserByJob(Member user) {
+        List<Member> list = new ArrayList<>();
         for(String key : users.keySet()){
-            MemberDTO userInMap = users.get(key);
+            Member userInMap = users.get(key);
             if(userInMap.getJob().equals(user.getJob())){
                 list.add(userInMap);
             }

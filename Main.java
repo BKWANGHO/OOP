@@ -9,16 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String result = "";
-        double re = 1.5;
-        String si = "sibal";
-        String ree = re+"";
-
-        for (int i = 0; i < 5; i++) {
-            result += si + ree + "\n";
-        }
-
-        System.out.println(result);
 
 
         while (true) {

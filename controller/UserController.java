@@ -1,7 +1,6 @@
 package controller;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.UserService;
 import serviceImpl.UserServiceImpl;
 
@@ -14,8 +13,8 @@ public class UserController {
         this.user = UserServiceImpl.getInstance();
     }
 
-    public MemberDTO join(Scanner sc) {
-        return user.join(new MemberBuilder()
+    public Member join(Scanner sc) {
+        return user.join(Member.builder()
                 .username(sc.next())
                 .password(sc.next())
                 .confirmPassword(sc.next())
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     public String login(Scanner sc) {
-        return user.login(new MemberBuilder()
+        return user.login(Member.builder()
                 .username(sc.next())
                 .password(sc.next())
                         .build()
@@ -38,19 +37,19 @@ public class UserController {
     }
 
     public String findUserBYId(Scanner sc) {
-        return user.findUserBYId(new MemberBuilder()
+        return user.findUserBYId(Member.builder()
                 .username(sc.next())
                 .build()
         );
     }
 
-    public Map<String, MemberDTO> addUsers() {
+    public Map<String, Member> addUsers() {
         return user.addUsers();
     }
 
     public String updatePassword(Scanner sc) {
 
-        return user.updatePassword(new MemberBuilder()
+        return user.updatePassword(Member.builder()
                 .username(sc.next())
                 .password(sc.next())
                 .confirmPassword(sc.next())
@@ -61,25 +60,25 @@ public class UserController {
 
     public String deleteUser(Scanner sc) {
 
-        return user.deleteUser(new MemberBuilder()
+        return user.deleteUser(Member.builder()
                 .username(sc.next())
                 .build()
         );
     }
 
-    public Map<String, MemberDTO> getUserList() {
+    public Map<String, Member> getUserList() {
 
         return user.getUserList();
     }
 
-    public List<MemberDTO> findUserByName(Scanner sc) {
-        return user.findUserByName(new MemberBuilder()
+    public List<Member> findUserByName(Scanner sc) {
+        return user.findUserByName(Member.builder()
                 .name(sc.next())
                 .build());
     }
 
-    public List<MemberDTO> findUserByJob(Scanner sc) {
-        return user.findUserByJob(new MemberBuilder()
+    public List<Member> findUserByJob(Scanner sc) {
+        return user.findUserByJob(Member.builder()
                 .job(sc.next())
                 .build());
     }

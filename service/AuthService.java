@@ -1,21 +1,20 @@
 package service;
 
-import model.MemberDTO;
+import model.Member;
 
 import java.util.Map;
-import java.util.Scanner;
 
 public interface AuthService {
 
-    String join(MemberDTO user);
+    String join(Member user);
 
     String login();
 
     String addUsers();
 
-    MemberDTO findUser(String username);
+    Member findUser(String username);
 
-    Map<String, MemberDTO> getUserMap();
+    Map<String, Member> getUserMap();
 
     String count();
 

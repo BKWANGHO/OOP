@@ -1,13 +1,9 @@
 package controller;
 
-import builder.MemberBuilder;
-import model.MemberDTO;
+import model.Member;
 import service.AuthService;
-import service.UtilService;
 import serviceImpl.AuthServiceImpl;
-import serviceImpl.UtilServiceImpl;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -20,7 +16,7 @@ public class AuthController {
     }
     public String join(Scanner sc) {
 
-        return auth.join(new MemberBuilder()
+        return auth.join(Member.builder()
                 .username(sc.next())
                 .password(sc.next())
                 .confirmPassword(sc.next())
@@ -38,7 +34,7 @@ public class AuthController {
         return auth.login();
     }
 
-    public MemberDTO findUser(String username) {
+    public Member findUser(String username) {
 
         return auth.findUser(username);
     }
@@ -46,7 +42,7 @@ public class AuthController {
     public String addUsers() {
         return auth.addUsers();
     }
-    public Map<String, MemberDTO> getUserMap() {
+    public Map<String, ?> getUserMap() {
         return auth.getUserMap();
     }
 

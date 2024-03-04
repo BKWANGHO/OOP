@@ -1,7 +1,6 @@
 package controller;
 
-import builder.AccountBuilder;
-import model.AccountDTO;
+import model.Account;
 import service.AccountService;
 import serviceImpl.AccountServiceImpl;
 
@@ -13,16 +12,14 @@ public class AccountController {
 
     AccountService accountService;
     public AccountController() {
-
         this.accountService = AccountServiceImpl.getInstance();
     }
-
 
     public String createAccount(Scanner sc) {
         System.out.println("개설할 계좌번호를 입력하세요");
         System.out.println("예금주를 입력하세요");
 
-        return accountService.createAccount(new AccountBuilder()
+        return accountService.createAccount(Account.builder()
                 .accountNumber(sc.next())
                 .accountHolder(sc.next())
                 .balance(0.0)
@@ -34,7 +31,7 @@ public class AccountController {
         System.out.println("계좌번호를 입력하세요");
         System.out.println("입금할 금액을 입력하세요");
 
-        return accountService.deposit(new AccountBuilder()
+        return accountService.deposit(Account.builder()
                 .accountNumber(sc.next())
                 .balance(sc.nextDouble())
                         .transactionDate(LocalDateTime.now())
@@ -45,7 +42,7 @@ public class AccountController {
     public String withdraw(Scanner sc) {
         System.out.println("계좌번호를 입력하세요");
         System.out.println("출금할 금액을 입력하세요");
-        return accountService.withdraw(new AccountBuilder()
+        return accountService.withdraw(Account.builder()
                 .accountNumber(sc.next())
                 .balance(sc.nextDouble())
                 .transactionDate(LocalDateTime.now())
@@ -64,7 +61,7 @@ public class AccountController {
         return accountService.removeAccount(sc.next());
     }
 
-    public List<AccountDTO> accountList() {
+    public List<?> accountList() {
         return accountService.accountList();
     }
 }

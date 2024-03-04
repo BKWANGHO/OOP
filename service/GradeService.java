@@ -1,10 +1,10 @@
 package service;
 
-import model.SubjectDTO;
+import model.Subject;
 
 public interface GradeService {
 
-    int getTotalScore (SubjectDTO subjects);
+    int getTotalScore (Subject subjects);
 
     double findAverage (double totalScore);
 

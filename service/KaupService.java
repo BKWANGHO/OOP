@@ -1,9 +1,9 @@
 package service;
 
-import model.MemberDTO;
+import model.Member;
 
 public interface KaupService {
-    String createBmi(MemberDTO user);
+    String createBmi(Member user);
     String createBodyMass(String bmi);
 
 
