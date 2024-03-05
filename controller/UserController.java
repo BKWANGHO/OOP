@@ -43,7 +43,7 @@ public class UserController {
         );
     }
 
-    public Map<String, Member> addUsers() {
+    public Map<String, ?> addUsers() {
         return user.addUsers();
     }
 
@@ -66,18 +66,18 @@ public class UserController {
         );
     }
 
-    public Map<String, Member> getUserList() {
+    public Map<String, ?> getUserList() {
 
         return user.getUserList();
     }
 
-    public List<Member> findUserByName(Scanner sc) {
+    public List<?> findUserByName(Scanner sc) {
         return user.findUserByName(Member.builder()
                 .name(sc.next())
                 .build());
     }
 
-    public List<Member> findUserByJob(Scanner sc) {
+    public List<?> findUserByJob(Scanner sc) {
         return user.findUserByJob(Member.builder()
                 .job(sc.next())
                 .build());

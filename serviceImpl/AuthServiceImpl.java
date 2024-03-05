@@ -59,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Map<String, Member> getUserMap() {
+    public Map<String, ?> getUserMap() {
         users.forEach((k,v)->
                 System.out.println("{"+k+","+v+"},"));
         return users;

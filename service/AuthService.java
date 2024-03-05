@@ -15,7 +15,7 @@ public interface AuthService {
 
     Member findUser(String username);
 
-    Map<String, Member> getUserMap();
+    Map<String, ?> getUserMap();
 
     List<?> getUserList();
     List<?> findUsersByName(String name);
